@@ -43,25 +43,20 @@ def positive_starting_bal(num):
         raise argparse.ArgumentTypeError(f'{num} not above 0.')
     return num
 
-def get_arg_parse_inputs():
-    """
-    Parse arguments
-    :return: Arg parse object with user selections or defaults
-    """
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--sb', '--start_balance', type=positive_starting_bal, dest='starting_bal',
-                        default=1000000, help='Enter an int starting balance. Default is 1M.')
-    parser.add_argument('--ea', '--equity_allocation', type=percentage_in_decimal, dest='equity_allocation',
-                        default=1, help='Enter equity allocation. Default is 100%.')
-    parser.add_argument('--wr', '--withdrawal_rate', type=percentage_in_decimal, dest='withdrawal_rate',
-                        default=.04, help='Enter withdrawal rate. Default is 4%')
-    parser.add_argument('--rb', '--rebalance', action='store_true', dest='rebalance',
-                        default=False, help='Enter whether to rebalance. Default is no rebalance.')
-    return parser.parse_args()
 
 def main():
     # parse arguments
-    args = get_arg_parse_inputs()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--sb', '--start_balance', type=positive_starting_bal, dest='starting_bal',
+                        default=1000000, help='Enter an int starting balance.')
+    parser.add_argument('--ea', '--equity_allocation', type=percentage_in_decimal, dest='equity_allocation',
+                        default=1, help='Enter equity allocation.')
+    parser.add_argument('--wr', '--withdrawal_rate', type=percentage_in_decimal, dest='withdrawal_rate',
+                        default=.04, help='Enter withdrawal rate.')
+    parser.add_argument('--rb', '--rebalance', action='store_true', dest='rebalance',
+                        default=False, help='Enter whether to rebalance.')
+    args = parser.parse_args()
+
     # instantiate Portfolio with parser arguments
     portfolio = Portfolio(args.starting_bal, args.withdrawal_rate, args.equity_allocation, args.rebalance)
     # call method to calculate
@@ -79,7 +74,6 @@ def main():
         plt.plot(years, equity_balances, label='equities', marker='o')
         plt.plot(years, bond_balances, label='bonds', marker='o')
         plt.plot(years, total_balances, label='total', marker='o')
-    # line plot chart details
     plt.title(f'Great Recession Portfolio Analyzer\n{format(args.starting_bal, ",")} starting balance, '
               f'{int(args.equity_allocation * 100)}:{int(100 - (args.equity_allocation * 100))} equity-bond allocation\n'
               f'Rebalance = {args.rebalance}')
@@ -94,8 +88,7 @@ def main():
     plt.xlabel('Year')
     plt.ylabel('Withdrawals')
     plt.legend()
-    
-    # bar chart details
+
     ax2.get_yaxis().set_major_formatter(ticker.FuncFormatter(lambda x, p: format(int(x), ',')))
     plt.grid(b=True, which='both', axis='y')
     plt.show()
