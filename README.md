@@ -9,6 +9,13 @@ This tool was inspired by reddit's r/FIRE, r/leanfire, and r/personalfinance sub
 
 ![output data](https://github.com/xMNG/great_recession_portfolio_analyzer/blob/master/images/80-20_cmd.PNG) 
 
+### How to use:
+1. Clone repo
+2. `python portfolio_analysis.py --help` for usage
+- `--sb=100000` for 100,000 starting balance
+- `--ea=.8` for 80-20 equity to bond weight
+- `--wr=.04` for 4% withdrawal rate (Safe withdrawal rate! hotly debated...)
+- `--rb` for rebalancing after withdrawal at the beginning of each year
 
 ### To do
 
