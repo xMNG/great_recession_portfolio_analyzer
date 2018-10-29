@@ -1,7 +1,10 @@
 # great recession portfolio analyzer
+<p>
 ![80-20 portfolio starting at $1M USD](https://github.com/xMNG/great_recession_portfolio_analyzer/blob/master/images/80-20.png) 
+</p>
+<p align="center">
 ![output data](https://github.com/xMNG/great_recession_portfolio_analyzer/blob/master/images/80-20_cmd.PNG) 
-
+</p>
 
 What if you retired right before the great recession? What would your withdrawals look like? This tool backtests your chosen allocation between Vanguard's Total Stock Market Index Fund Admiral Shares (VTSAX) or Vanguard's Total Bond Market Index Fund Admiral Shares (VBTLX). 
 
